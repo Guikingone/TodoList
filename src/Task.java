@@ -1,17 +1,17 @@
 /**
  * Created by Guillaume on 20/05/2016.
  */
-public class Task {
+public abstract class Task {
 
     /**
      * @var label
      */
-    public String label;
+    private String label;
 
     /**
      * @var state
      */
-    public Boolean state;
+    private Boolean state;
 
     /**
      * The constructor.
@@ -19,7 +19,8 @@ public class Task {
      * @param label Description de la tache
      */
     public Task(String label) {
-        this.label = label;
+        setLabel(label);
+        setState(false);
     }
 
     /**
@@ -27,15 +28,13 @@ public class Task {
      *
      * @return Le nom de la tache suivi de son etat
      */
-    public String toString() {
-        return "Tache '" + this.label + "' => " + this.state;
-    }
+    public abstract String toString();
 
     /**
      * Passage d'une tache a l'etat "fait"
      */
     public void done() {
-        state = true;
+        setState(true);
     }
 
     /**
@@ -47,7 +46,7 @@ public class Task {
      * 			</ul>
      */
     public Boolean isDone() {
-        return state;
+        return getState();
     }
 
     // Start of user code (user defined methods for Task)
@@ -57,31 +56,31 @@ public class Task {
      * Returns label.
      * @return label
      */
-    public String getLabel() {
+    protected String getLabel() {
         return this.label;
     }
 
     /**
      * Sets a value to attribute label.
-     * @param newLabel
+     * @param label
      */
-    public void setLabel(String newLabel) {
-        this.label = newLabel;
+    protected void setLabel(String label) {
+        this.label = label;
     }
 
     /**
      * Returns state.
      * @return state
      */
-    public Boolean getState() {
+    protected Boolean getState() {
         return this.state;
     }
 
     /**
      * Sets a value to attribute state.
-     * @param newState
+     * @param state
      */
-    public void setState(Boolean newState) {
-        this.state = newState;
+    protected void setState(Boolean state) {
+        this.state = state;
     }
 }

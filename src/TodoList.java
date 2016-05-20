@@ -4,11 +4,8 @@
 public class TodoList {
 
     public static void main(String[] args) {
-        TaskList list = new TaskList();
+        SimpleTask t = new SimpleTask("Test");
 
-        list.addTask("Test");
-        list.addTask("Test 2");
-
-        System.out.println(list);
+        System.out.println(t);
     }
 }
