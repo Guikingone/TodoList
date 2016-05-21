@@ -1,3 +1,5 @@
+package todolist;
+
 /**
  * Created by Guillaume on 20/05/2016.
  */
@@ -49,9 +51,6 @@ public abstract class Task {
         return getState();
     }
 
-    // Start of user code (user defined methods for Task)
-
-    // End of user code
     /**
      * Returns label.
      * @return label

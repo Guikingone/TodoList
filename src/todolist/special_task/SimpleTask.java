@@ -1,3 +1,7 @@
+package todolist.special_task;
+
+import todolist.Task;
+
 /**
  * Created by Guillaume on 20/05/2016.
  */

@@ -1,12 +1,19 @@
+package todolist;
+
+import todolist.special_task.RDV;
+import todolist.special_task.SimpleTask;
+
+import java.util.ArrayList;
+
 /**
  * Definition of a task list
  *
  * Created by Guillaume on 20/05/2016.
  */
+
 public class TaskList {
 
-    public Task[] tasks = new Task[10];
-    public int nbTasks = 0;
+    private ArrayList<Task> tasks = new ArrayList<>();
 
     /**
      * Affichage d'une liste de tâches sous forme de chaînes de caractères
@@ -16,9 +23,10 @@ public class TaskList {
     public String toString()
     {
         String result = "";
+        int len = tasks.size();
 
-        for(int i = 0; i < nbTasks; i++){
-            result += i + 1 + "/" + nbTasks + ": " + tasks[i] + "\n";
+        for(int i = 0; i < len; i++){
+            result += i + 1 + "/" + len + ": " + tasks.get(i) + "\n";
         }
         return result;
     }
@@ -34,11 +42,7 @@ public class TaskList {
      */
     public Boolean addTask(Task newTask)
     {
-        if(nbTasks == 10)
-            return false;
-        else
-            tasks[nbTasks++] = newTask;
-            return true;
+        return tasks.add(newTask);
     }
 
     /**
@@ -52,7 +56,25 @@ public class TaskList {
      */
     public Boolean addTask(String label)
     {
-        Task newTask = new Task(label);
+        SimpleTask newTask = new SimpleTask(label);
+        return addTask(newTask);
+    }
+
+    /**
+     *
+     * Add a RDV.
+     *
+     * @param label
+     * @param day
+     * @param month
+     * @param year
+     * @param hours
+     * @param minutes
+     * @return
+     */
+    public Boolean addTask(String label, int day, int month, int year, int hours, int minutes)
+    {
+        RDV newTask = new RDV(label, day, month, year, hours, minutes);
         return addTask(newTask);
     }
 
@@ -66,12 +88,14 @@ public class TaskList {
      *     <li> false: The task hasn't been made.</li>
      * </ul>
      */
-    public Boolean taskDone(int idTask)
+    public Boolean taskDone(int idTask) throws IndexOutOfBoundsException
     {
-        if((idTask < 0) || (idTask >= nbTasks))
+        if((idTask < 0) || (idTask >= tasks.size()))
+            throw new IndexOutOfBoundsException("Erreur !");
+        else if (tasks.get(idTask).isDone())
             return false;
         else
-            tasks[idTask].isDone();
+            tasks.get(idTask).done();
             return true;
     }
 }
